@@ -40,12 +40,13 @@ for index, i in rawdata.iterrows():
         name_table+=(i[userc.emailFeild],"CERT"+str(ctr)+"_"+usr+".png")
     ctr+=1;
     ## Add Email Code Here
-
+"""
 send_email_now=str(input("Send Emails Now [y/n]: "))
 if(send_email_now=='n'):
     exit()
 
 print(name_table)
+"""
 
 
 
