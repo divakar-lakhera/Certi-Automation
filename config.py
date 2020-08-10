@@ -17,7 +17,7 @@ class config:
         self.port="587"
         ## CSV Parser Config
         self.datapack="data_final.csv"   ## Default CSV file if not provided
-        self.templateLocation="template/template_final.png"
+        self.templateLocation="template/temp_bar.png"
         self.fontLocation="fonts/roboto/roboto-Bold.ttf"
         self.fontSize=75
         self.fontColor=(255,255,255)   #RGB
@@ -35,7 +35,7 @@ class config:
             ## (Feild Name, X index Min, X index Max, Y index)
             ## Feild name is used to fetch data from CSV and write it on certificate.
             ##
-            ("Name",1440,3150,1035),
-            ("College Name",253,2399,1184),
+            ("Name",1440,3150,1026),
+            ("College Name",253,2399,1175),
             #("Topic of Lecture",400,3000,1615)
         ]

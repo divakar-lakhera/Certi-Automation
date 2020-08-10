@@ -3,7 +3,9 @@ sys.path.append(".")
 from imageLib import imageWorker as iWork
 import config as cfg
 import pandas as pd
-
+from PIL import Image
+import os
+from barLoader import buildQR as bq
 ## Load User Configurations
 userc=cfg.config()
 ## Load CSV file
@@ -16,9 +18,11 @@ print(img.imageXmax)
 print(img.imageYmax)
 name_table=[]
 ctr=0
+scode="NITUK/CSE/20/STTP/00"
 for index, i in rawdata.iterrows():
     print(i)
     img.reloadImage(userc.templateLocation)
+    cCode=scode+str(ctr)
     usr=""
     for j in userc.writeData:
         if(j[0]==userc.nameId):
@@ -36,17 +40,19 @@ for index, i in rawdata.iterrows():
         ##
     ## Flush Buffer
     img.flush("CERT"+str(ctr)+"_"+usr+".png");
-    if(userc.autoEmailsend):
-        name_table+=(i[userc.emailFeild],"CERT"+str(ctr)+"_"+usr+".png")
+    bq(cCode,"BCDE"+str(ctr)+".png")
+    ## Merge Barcode
+    barcodeImage=Image.open(userc.outputFolder+"/"+"BCDE"+str(ctr)+".png")
+    certi=Image.open(userc.outputFolder+"/"+"CERT"+str(ctr)+"_"+usr+".png")
+    certi.paste(barcodeImage, (60, 70)) ## Set It
+    certi.save(userc.outputFolder+"/"+"CERT_FINAL"+str(ctr)+"_"+usr+".png", quality=100)
+    ## REMOVE Temp
+    os.remove(userc.outputFolder+"/"+"BCDE"+str(ctr)+".png")
+    os.remove(userc.outputFolder+"/"+"CERT"+str(ctr)+"_"+usr+".png")
     ctr+=1;
-    ## Add Email Code Here
-"""
-send_email_now=str(input("Send Emails Now [y/n]: "))
-if(send_email_now=='n'):
-    exit()
 
-print(name_table)
-"""
+
+exit()
 
 
 
