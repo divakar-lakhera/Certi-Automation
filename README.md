@@ -79,5 +79,5 @@ Here in table above field names are "Name" and "College".
  - Add SMTP protocol for automatic certificate delivery via Email.
  - Add UI for better user experience and ease.
  - Add exception handling
- - Add Barcode Support
+ - Add Barcode Support :heavy_check_mark:
  - Add Requirements.txt file
